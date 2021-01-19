@@ -8,20 +8,14 @@ export default function InterviewerListItem(props) {
     "interviewers__item--selected": props.selected,
   })
 
-const formatName = () => {
-  if (props.selected) {
-    return props.name
-  }
-};
-
   return (
-    <li className={interviewerClass} onClick={() => props.setInterviewer(props.name)}>
+    <li className={interviewerClass} onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
         src={props.avatar}
         alt={props.name}
       />
-      {formatName()}
+      {props.selected && props.name}
     </li>
   );
 }
