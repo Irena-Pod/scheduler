@@ -13,6 +13,25 @@ export function getAppointmentsForDay(state, day) {
   return appointments;
 };
 
+export function getInterviewersForDay(state, day) {
+  const dayApps = state.days.filter(d => d.name === day)[0];
+
+
+  const interviewers = [];
+
+  if (dayApps) {
+    dayApps.interviewers.forEach(id => {
+      if (state.appointments[id]) {
+        interviewers.push(state.interviewers[id])
+        console.log("line 26", interviewers)
+      }
+    });
+  }
+  console.log("line 20", interviewers)
+  return interviewers;
+  
+};
+
 export function getInterview(state, interview) {
   const newInterview = {};
   const interviewers = state.interviewers;
