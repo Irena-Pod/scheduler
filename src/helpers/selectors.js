@@ -11,4 +11,19 @@ export function getAppointmentsForDay(state, day) {
     });
   }
   return appointments;
-}
+};
+
+export function getInterview(state, interview) {
+  const newInterview = {};
+  const interviewers = state.interviewers;
+  const appointments = state.appointments
+
+  for (const app in appointments) {
+    if (appointments[app].interview && appointments[app].interview === interview) {
+      newInterview["student"] = appointments[app].interview.student
+      newInterview["interviewer"] = interviewers[appointments[app].interview.interviewer];
+      return newInterview
+    }
+  }
+  return null;
+};
