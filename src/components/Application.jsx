@@ -18,6 +18,25 @@ export default function Application(props) {
 
   const setDay = (day) => setState({ ...state, day });
 
+  // Allows to change local state when booking an interview
+  function bookInterview(id, interview) {
+    
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({...state, appointments});
+
+    //Update appointment with the interview
+    axios.put(`/api/appointments/${id}`, {interview}).then(() => {});
+  };
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -48,6 +67,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers} 
+        bookInterview={bookInterview}
       />
     );
   });
