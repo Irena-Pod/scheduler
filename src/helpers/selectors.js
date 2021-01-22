@@ -23,11 +23,9 @@ export function getInterviewersForDay(state, day) {
     dayApps.interviewers.forEach(id => {
       if (state.appointments[id]) {
         interviewers.push(state.interviewers[id])
-        console.log("line 26", interviewers)
       }
     });
   }
-  console.log("line 20", interviewers)
   return interviewers;
   
 };
@@ -46,3 +44,4 @@ export function getInterview(state, interview) {
   }
   return null;
 };
+

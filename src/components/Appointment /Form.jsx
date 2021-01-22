@@ -20,7 +20,6 @@ export default function Form(props) {
 
   function save() {
     props.onSave(name, interviewer);
- 
   }
 
   return (
