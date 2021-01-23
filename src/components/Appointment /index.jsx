@@ -8,6 +8,7 @@ import Show from "components/Appointment /Show";
 import Empty from "components/Appointment /Empty";
 import Status from "components/Appointment /Status";
 import Confirm from "components/Appointment /Confirm";
+import Error from "components/Appointment /Error";
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
@@ -16,6 +17,8 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -27,23 +30,35 @@ export default function Appointment(props) {
       interviewer,
     };
 
-    transition(SAVING);
-
+    transition(SAVING, true);
     //setTimeout is set to illustrate the saving indicator
     setTimeout(function () {
-      props.bookInterview(props.id, interview);
-      transition(SHOW);
+      props
+        .bookInterview(props.id, interview)
+        .then(() => transition(SHOW))
+        .catch((error) => transition(ERROR_SAVE, true));
     }, 1000);
   }
 
   function deleteInterview() {
-    transition(DELETING);
-    props.cancelInterview(props.id).then(() => transition(EMPTY));
+    transition(DELETING, true);
+    props
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch((error) => {
+        transition(ERROR_DELETE, true);
+      })
   }
 
   return (
     <article className="appointment">
       <Header time={props.time} />
+      {mode === ERROR_DELETE && (
+        <Error message="Could not delete interview" onClose={() => back()} />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error message="Could not save interview" onClose={() => back()} />
+      )}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}

@@ -21,7 +21,7 @@ export default function Form(props) {
   function save() {
     props.onSave(name, interviewer);
   }
-console.log(props)
+
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
