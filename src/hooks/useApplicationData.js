@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -10,6 +10,7 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {},
   });
+
 
 
   const setDay = (day) => setState({ ...state, day });
@@ -32,6 +33,15 @@ export default function useApplicationData() {
 
   // Allows to change local state when booking an interview
   function bookInterview(id, interview) {
+
+    // Update spots remaining only if creating new appointment
+    if (!state.appointments[id].interview) {
+      state.days.filter(day => day.name === state.day)[0].spots--;
+    }
+    const days = {
+      ...state.days,
+    }
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -39,16 +49,17 @@ export default function useApplicationData() {
 
     const appointments = {
       ...state.appointments,
-      [id]: appointment,
+      [id]: appointment
     };
 
-    return axios.put(`/api/appointments/${id}`, {interview })
-    .then(() => {
-      setState((prev) => ({
-        ...prev,
-        appointments,
-      }));
-    });
+    return axios.put(`/api/appointments/${id}`, { interview })
+      .then(() => {
+        setState((prev) => ({
+          ...prev,
+          appointments,
+          ...days
+        }));
+      });
   }
 
   // Delete an appointment
@@ -63,16 +74,21 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
+    // Update spots remaining when deleting an appointment
+    state.days.filter(day => day.name === state.day)[0].spots++;
+    const days = {
+      ...state.days,
+    }
+
     return axios.delete(`/api/appointments/${id}`)
-    .then( ()=> {
-      setState((prev) => ({
-        ...prev,
-        appointments,
-      }));
-    })
+      .then(() => {
+        setState((prev) => ({
+          ...prev,
+          appointments,
+          ...days
+        }));
+      })
   }
 
   return { state, setDay, bookInterview, cancelInterview };
-
-
 }
