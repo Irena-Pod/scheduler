@@ -28,9 +28,16 @@ Unit, integration and E2E tests were completed through the development of the pr
 !["Edit/Delete interview view (upon hover)"](https://github.com/Irena-Pod/scheduler/blob/master/docs/Edit_or_delete_interview_view_hover.png?raw=true)
 
 
-## Setup
+## Getting Started
+### Setup
 
 Install dependencies with `npm install`.
+
+### Setup Interview Scheduler API
+
+In a different directory, clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) and follow setup instructions
+
+**Both scheduler client and scheduler server need to run the for application to work.**
 
 #### Running Webpack Development Server
 
