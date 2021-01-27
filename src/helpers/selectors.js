@@ -27,7 +27,7 @@ export function getInterviewersForDay(state, day) {
     });
   }
   return interviewers;
-  
+
 };
 
 export function getInterview(state, interview) {

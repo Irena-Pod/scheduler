@@ -7,7 +7,7 @@ import "./InterviewerList.scss";
 export default function InterviewerList(props) {
   const { interviewers } = props;
 
-  //Props validation configuration (for)
+  //Props validation configuration
   InterviewerList.propTypes = {
     interviewers: PropTypes.array.isRequired,
   };
