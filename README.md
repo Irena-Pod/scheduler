@@ -18,6 +18,16 @@ Unit, integration and E2E tests were completed through the development of the pr
 
 ## Screenshots
 
+##### Scheduler Main View
+!["Scheduler main view"](https://github.com/Irena-Pod/scheduler/blob/master/docs/Interview_Scheduler_main_view.png?raw=true)
+
+##### Add New Interview Form
+!["Add new interview form"](https://github.com/Irena-Pod/scheduler/blob/master/docs/Add_new_interview_form.png?raw=true)
+
+##### Edit/Delete Interview View (upon hover)
+!["Edit/Delete interview view (upon hover)"](https://github.com/Irena-Pod/scheduler/blob/master/docs/Edit_or_delete_interview_view_hover.png?raw=true)
+
+
 ## Setup
 
 Install dependencies with `npm install`.
