@@ -7,6 +7,14 @@ Unit, integration and E2E tests were completed through the development of the pr
 - Jest
 - Cypress
 
+#### Deployment
+- Server on Heroku
+- Client on Netlify 
+- Contnious integration on CircleCi
+
+See site **[HERE](https://hungry-nobel-18b028.netlify.app/)** 
+
+
 ## Dependencies
 
 - axios
@@ -35,7 +43,7 @@ Install dependencies with `npm install`.
 
 ### Setup Interview Scheduler API
 
-In a different directory, clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) and follow setup instructions
+In a different directory, clone the [scheduler-api](https://github.com/Irena-Pod/scheduler-api) and follow setup instructions
 
 **Both scheduler client and scheduler server need to run the for application to work.**
 
